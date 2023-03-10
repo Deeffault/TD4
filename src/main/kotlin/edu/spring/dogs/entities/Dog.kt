@@ -1,5 +1,6 @@
 package edu.spring.dogs.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -15,12 +16,13 @@ open class Dog() {
 	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	open val id = 0
+	open var id = 0
 
 	@Column(length = 30, nullable = false)
 	open lateinit var name: String
 
 	@ManyToOne(optional = true)
+	@JsonBackReference
 	open var master: Master?=null
 
 	@ManyToMany
